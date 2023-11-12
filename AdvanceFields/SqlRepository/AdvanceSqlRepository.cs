@@ -10,6 +10,7 @@ using Microsoft.CodeAnalysis.Classification;
 using System.Linq;
 using System.Collections.Generic;
 using System.Data.SQLite;
+using Microsoft.Extensions.Logging;
 
 namespace AdvanceFields.SqlRepository
 {
@@ -17,15 +18,19 @@ namespace AdvanceFields.SqlRepository
     {
         protected readonly IConfiguration _configuration;
         protected string _SQLServer = string.Empty;
-        public AdvanceSqlRepository(IConfiguration configuration) {
+        private readonly ILogger<AdvanceSqlRepository> _logger;
+
+
+
+
+        public AdvanceSqlRepository(IConfiguration configuration, ILogger<AdvanceSqlRepository> logger) {
             _configuration = configuration;
             _SQLServer = configuration.GetConnectionString("SqlTranslationConnection");
+            _logger = logger;
         }
-        public string Name => "SqlAgency";
+        public string Name => "SqlAdvance";
 
-        //string connectionString = "Data Source=yourdatabase.db;Version=3;";
-
-        //services.AddTransient<IDbConnection>(c => new SQLiteConnection(connectionString));
+  
         public void SaveTranslation(RqTranslate rqTranslate)
         {
             try
