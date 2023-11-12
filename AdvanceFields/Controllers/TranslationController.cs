@@ -13,6 +13,7 @@ using System.Net.Http;
 using System.Text;
 using Microsoft.Extensions.Configuration;
 using System.IO;
+using AdvanceFields.Services;
 
 namespace AdvanceFields.Controllers
 {
@@ -21,17 +22,20 @@ namespace AdvanceFields.Controllers
     
         
         private readonly IConfiguration _configuration;
-        public TranslationController( IConfiguration configuration)
+        private readonly ITranslation _translation;
+        public TranslationController( IConfiguration configuration,ITranslation translation)
         {
             //_context = context;
-           
+            _translation = translation;
             _configuration = configuration;
         }
 
         // GET: Transaction
         public async Task<IActionResult> Index()
         {
-            return View();
+
+            return View(_translation.LoadTranslation());
+        
         }
 
         // GET: Transaction/AddOrEdit(Insert)
@@ -90,6 +94,18 @@ namespace AdvanceFields.Controllers
             {
               
                     res = RqTranslation(text);
+
+                if (res != null)
+                {
+                    var translation = new RqTranslate
+                    {
+                        Text = res?.contents?.text ?? string.Empty,
+                        Translated = res?.contents?.translation ?? string.Empty
+                    };
+                    //save to db
+                    _translation.SaveTranslation(translation);
+                }
+            
                 
 
             }catch(Exception ex)

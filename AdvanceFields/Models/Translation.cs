@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace AdvanceFields.Models
 {
@@ -19,4 +20,15 @@ namespace AdvanceFields.Models
     {
         public int total { get; set; }
     }
+
+    public class RqTranslate
+    {
+        public int Id { get; set; }
+        public string Text { get; set; }
+
+        public string Translated { get; set; }
+        public DateTime CreatedWhen { get; set; }
+    }
+
+    
 }
