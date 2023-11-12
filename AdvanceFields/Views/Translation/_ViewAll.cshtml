@@ -1,8 +1,8 @@
-﻿@model IEnumerable<jQuery_Ajax_CRUD.Models.TransactionModel>
+﻿@*@model IEnumerable<jQuery_Ajax_CRUD.Models.TransactionModel>*@
 
     <div class="col-md-8 offset-md-2">
 
-        <h1 class="text-center"><i class="fas fa-comments-dollar text-success"></i> Translation History</h1>
+    <h1 class="text-center"><i class="fas fa-history"></i> Translation History</h1>
 
 
         <table class="table">
@@ -25,11 +25,12 @@
                         Translation
                     </th>
                     <th>
-                    <a onclick="showInPopup('@Url.Action("AddOrEdit","Translation",null,Context.Request.Scheme)','New Translation')" class="btn btn-success text-white"><i class="fas fa-random"></i> New Translation</a>
+                    <a onclick="showInPopup('@Url.Action("AddOrEdit","Translation",null,null)','New Translation')" class="btn btn-success text-white"><i class="fas fa-plus"></i> New Translation</a>
                     </th>
                 </tr>
             </thead>
-            <tbody>
+
+    @*        <tbody>
                 @foreach (var item in Model)
                 {
                     <tr>
@@ -56,6 +57,6 @@
                         </td>
                     </tr>
                 }
-            </tbody>
+            </tbody>*@
         </table>
     </div>

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<jQuery_Ajax_CRUD.Models.TransactionModel>
+﻿
 
 @{
     ViewData["Title"] = "Index";
@@ -6,7 +6,7 @@
 
 
 <div id="view-all">
-    @await Html.PartialAsync("_ViewAll", Model)
+    @await Html.PartialAsync("_ViewAll", "")
 </div>
 
 <div class="modal" tabindex="-1" role="dialog" id="form-modal">

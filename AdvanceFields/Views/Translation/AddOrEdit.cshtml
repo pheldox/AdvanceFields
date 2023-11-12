@@ -1,13 +1,13 @@
-﻿@model jQuery_Ajax_CRUD.Models.TransactionModel
+﻿
 
 @{ Layout = null; }
 
 <div class="row">
     <div class="col-md-12">
         <form asp-action="Translate" asp-route-id="" onsubmit="return jQueryAjaxPostTranslate(this);">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @*<div asp-validation-summary="ModelOnly" class="text-danger"></div>*@
             @*<input type="hidden" asp-for="TransactionId" />*@
-            <input type="hidden" asp-for="Date" />
+            @*<input type="hidden" asp-for="Date" />*@
          @*   <div class="form-group">
                 <label asp-for="AccountNumber" class="control-label"></label>
                 <div class="input-group">
@@ -73,6 +73,7 @@
 
             <!-- Display the result from the API call below the input -->
             <div id="displayText" class="text-muted"></div>
+            @*<input type="text" id="displayText" class="form-control disabled" />*@
 
             <div class="form-group">
                 <div class="col-md-6 offset-md-3">

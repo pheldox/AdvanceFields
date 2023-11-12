@@ -1,4 +1,4 @@
-using jQuery_Ajax_CRUD.Models;
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -25,18 +25,9 @@ namespace AdvanceFields
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddDbContext<TransactionDbContext>(options =>
-         options.UseSqlServer(Configuration.GetConnectionString("DevConnection")));
-            var d = Configuration["TranslationSettings:BaseApiURL"];
-            services.AddHttpClient("Translation", (provider, client) =>
-            {
-             
-                client.BaseAddress = new Uri(Configuration["TranslationSettings:BaseApiURL"]);
-                TimeSpan.Parse(Configuration["TranslationSettings:Timeout"].ToString());
-            });
+      
         }
 
-        //Http client factory
         
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

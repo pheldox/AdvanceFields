@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using jQuery_Ajax_CRUD.Models;
+
 using static jQuery_Ajax_CRUD.Helper;
 using AdvanceFields.Models;
 using Newtonsoft.Json;
@@ -14,16 +14,16 @@ using System.Text;
 using Microsoft.Extensions.Configuration;
 using System.IO;
 
-namespace jQuery_Ajax_CRUD.Controllers
+namespace AdvanceFields.Controllers
 {
     public class TranslationController : Controller
     {
-        private readonly TransactionDbContext _context;
+    
         
         private readonly IConfiguration _configuration;
-        public TranslationController(TransactionDbContext context, IConfiguration configuration)
+        public TranslationController( IConfiguration configuration)
         {
-            _context = context;
+            //_context = context;
            
             _configuration = configuration;
         }
@@ -31,25 +31,15 @@ namespace jQuery_Ajax_CRUD.Controllers
         // GET: Transaction
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Transactions.ToListAsync());
+            return View();
         }
 
         // GET: Transaction/AddOrEdit(Insert)
         // GET: Transaction/AddOrEdit/5(Update)
         [NoDirectAccess]
-        public async Task<IActionResult> AddOrEdit(int id = 0)
+        public IActionResult AddOrEdit(int id = 0)
         {
-            if (id == 0)
-                return View(new TransactionModel());
-            else
-            {
-                var transactionModel = await _context.Transactions.FindAsync(id);
-                if (transactionModel == null)
-                {
-                    return NotFound();
-                }
-                return View(transactionModel);
-            }
+            return View();
         }
 
         //[HttpPost]
@@ -105,48 +95,44 @@ namespace jQuery_Ajax_CRUD.Controllers
             }catch(Exception ex)
             {
                 throw new Exception(ex.Message, ex);
-            }
-           
-         
-            
-                
+            }      
             
             return Json(res?.contents?.translated);
         }
 
-        // GET: Transaction/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+        //// GET: Transaction/Delete/5
+        //public async Task<IActionResult> Delete(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            var transactionModel = await _context.Transactions
-                .FirstOrDefaultAsync(m => m.TransactionId == id);
-            if (transactionModel == null)
-            {
-                return NotFound();
-            }
+        //    var transactionModel = await _context.Transactions
+        //        .FirstOrDefaultAsync(m => m.TransactionId == id);
+        //    if (transactionModel == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return View(transactionModel);
-        }
+        //    return View(transactionModel);
+        //}
 
-        // POST: Transaction/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var transactionModel = await _context.Transactions.FindAsync(id);
-            _context.Transactions.Remove(transactionModel);
-            await _context.SaveChangesAsync();
-            return Json(new { html = Helper.RenderRazorViewToString(this, "_ViewAll", _context.Transactions.ToList()) });
-        }
+        //// POST: Transaction/Delete/5
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> DeleteConfirmed(int id)
+        //{
+        //    var transactionModel = await _context.Transactions.FindAsync(id);
+        //    _context.Transactions.Remove(transactionModel);
+        //    await _context.SaveChangesAsync();
+        //    return Json(new { html = Helper.RenderRazorViewToString(this, "_ViewAll", _context.Transactions.ToList()) });
+        //}
 
-        private bool TransactionModelExists(int id)
-        {
-            return _context.Transactions.Any(e => e.TransactionId == id);
-        }
+        //private bool TransactionModelExists(int id)
+        //{
+        //    return _context.Transactions.Any(e => e.TransactionId == id);
+        //}
 
         private  Translation RqTranslation(string text)
         {
