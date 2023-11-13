@@ -1,6 +1,10 @@
-﻿@*@model IEnumerable<jQuery_Ajax_CRUD.Models.TransactionModel>*@
+﻿@foreach (var key in ViewData.Keys)
+{
+    <p>@key: @ViewData[key]?.GetType().FullName</p>
+}
+@model IEnumerable<AdvanceFields.Models.RqTranslate>
 
-    <div class="col-md-8 offset-md-2">
+<div class="col-md-8 offset-md-2">
 
     <h1 class="text-center"><i class="fas fa-history"></i> Translation History</h1>
 
@@ -9,19 +13,19 @@
             <thead class="thead-light">
                 <tr>
                     <th>
-                        @*@Html.DisplayNameFor(model => model.AccountNumber)*@
+                     
                         ID
                     </th>
                    <th>
-                        @*@Html.DisplayNameFor(model => model.BeneficiaryName)*@
+                   
                         Text
                     </th>
                     <th>
-                        @*@Html.DisplayNameFor(model => model.Date)*@
+                   
                         Date
                     </th>
                     <th>
-                        @*@Html.DisplayNameFor(model => model.Amount)*@
+                    
                         Translation
                     </th>
                     <th>
@@ -30,33 +34,26 @@
                 </tr>
             </thead>
 
-    @*        <tbody>
+           <tbody>
                 @foreach (var item in Model)
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.AccountNumber)
+                            @Html.DisplayFor(modelItem => item.Id)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.BeneficiaryName)
+                            @Html.DisplayFor(modelItem => item.Text)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Date)
+                        @Html.DisplayFor(modelItem => item.Translated)
+                      
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Amount)
+                        @Html.DisplayFor(modelItem => item.CreatedWhen)
                         </td>
-                        <td>
-                            <div>
-                            <a onclick="showInPopup('@Url.Action("AddOrEdit","Translation",new {id=item.TransactionId},Context.Request.Scheme)','Update Transaction')" class="btn btn-info text-white"><i class="fas fa-pencil-alt"></i> Edit</a>
-                                <form asp-action="Delete" asp-route-id="@item.TransactionId" onsubmit="return jQueryAjaxDelete(this)" class="d-inline">
-                                    <input type="hidden" asp-for="@item.TransactionId" />
-                                    <input type="submit" value="Delete" class="btn btn-danger" />
-                                </form>
-                            </div>
-                        </td>
+                     
                     </tr>
                 }
-            </tbody>*@
+            </tbody>
         </table>
     </div>

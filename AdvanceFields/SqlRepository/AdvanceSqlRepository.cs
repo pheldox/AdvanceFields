@@ -46,7 +46,7 @@ namespace AdvanceFields.SqlRepository
             }
         }
 
-        public List<RqTranslate> LoadTranslation()
+        public IEnumerable<RqTranslate> LoadTranslation()
         {
             try
             {

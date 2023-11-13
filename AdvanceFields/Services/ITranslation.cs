@@ -6,9 +6,9 @@ namespace AdvanceFields.Services
     public interface ITranslation: IServiceBase
     {
 
-        public void SaveTranslation(RqTranslate rqTranslate);
+         void SaveTranslation(RqTranslate rqTranslate);
         
-        public List<RqTranslate> LoadTranslation();
+        IEnumerable<RqTranslate> LoadTranslation();
         
 
     }
