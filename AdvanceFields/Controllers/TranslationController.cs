@@ -34,20 +34,21 @@ namespace AdvanceFields.Controllers
             _logger = logger;
         }
 
-        // GET: Transaction
+        // GET: Translation
         public async Task<IActionResult> Index()
         {
             try
             {
-                var res = _translation.LoadTranslation();
-                return View( res);
+
+                var data = _translation.LoadTranslation();
+            
+                return View(data);
             }
             catch(Exception ex)
             {
                 _logger.LogError($"Error Loading Translations", ex);
                 return View("Error", ex.Message);
             }
-           
         
         }
 
@@ -78,7 +79,7 @@ namespace AdvanceFields.Controllers
                     var translation = new RqTranslate
                     {
                         Text = res?.contents?.text ?? string.Empty,
-                        Translated = res?.contents?.translation ?? string.Empty
+                        Translated = res?.contents?.translated ?? string.Empty
                     };
                     //save to db
                     _translation.SaveTranslation(translation);

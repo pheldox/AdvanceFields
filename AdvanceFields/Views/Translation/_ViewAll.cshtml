@@ -1,59 +1,34 @@
-﻿@foreach (var key in ViewData.Keys)
-{
-    <p>@key: @ViewData[key]?.GetType().FullName</p>
-}
-@model IEnumerable<AdvanceFields.Models.RqTranslate>
+﻿@model IEnumerable<AdvanceFields.Models.RqTranslate>
 
-<div class="col-md-8 offset-md-2">
-
+<div class="">
     <h1 class="text-center"><i class="fas fa-history"></i> Translation History</h1>
 
-
-        <table class="table">
+    <div class="table-responsive">
+        <table class="table " id="translationTable">
             <thead class="thead-light">
                 <tr>
+                    <th>ID</th>
+                    <th>Text</th>
+                    <th>Translation</th>
+                    <th>Date</th>
                     <th>
-                     
-                        ID
-                    </th>
-                   <th>
-                   
-                        Text
-                    </th>
-                    <th>
-                   
-                        Date
-                    </th>
-                    <th>
-                    
-                        Translation
-                    </th>
-                    <th>
-                    <a onclick="showInPopup('@Url.Action("AddOrEdit","Translation",null,null)','New Translation')" class="btn btn-success text-white"><i class="fas fa-plus"></i> New Translation</a>
+                        <a onclick="showInPopup('@Url.Action("AddOrEdit","Translation",null,null)','New Translation')" class="btn btn-success text-white">
+                            <i class="fas fa-plus"></i> New Translation
+                        </a>
                     </th>
                 </tr>
             </thead>
-
-           <tbody>
+            <tbody>
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Id)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Text)
-                        </td>
-                        <td>
-                        @Html.DisplayFor(modelItem => item.Translated)
-                      
-                        </td>
-                        <td>
-                        @Html.DisplayFor(modelItem => item.CreatedWhen)
-                        </td>
-                     
+                        <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Text)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Translated)</td>
+                        <td>@Html.DisplayFor(modelItem => item.CreatedWhen)</td>
                     </tr>
                 }
             </tbody>
         </table>
     </div>
+</div>

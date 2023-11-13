@@ -1,7 +1,21 @@
 ﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 // for details on configuring this project to bundle and minify static web assets.
 
-// Write your JavaScript code.
+
+
+$(function () {
+    $('#translationTable').DataTable({
+      
+        "columns": [
+            { "data": "Id", "autoWidth": true, },
+            { "data": "Text", "autoWidth": true },
+            { "data": "Translated", "autoWidth": true,  },
+            { "data": "CreatedWhen", "autoWidth": true }
+        ]
+    });
+});
+
+
 
 $(function () {
     $("#loaderbody").addClass('hide');
